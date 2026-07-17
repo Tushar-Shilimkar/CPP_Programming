@@ -1,5 +1,3 @@
-// Stack
-
 #include<iostream>
 using namespace std;
 
@@ -26,10 +24,25 @@ class Stack
 };
 
 Stack :: Stack ()
-{}
+{
+    this -> first = NULL;
+    this -> iCount = 0;
+}
 
 void Stack :: Push(int iNo)  
-{}
+{
+    struct node *newn = NULL;
+
+    newn = new struct node();
+
+    newn -> data = iNo;
+    newn -> next = NULL;
+
+    newn -> next = first;
+    this -> first = newn;
+       
+    this->iCount++;
+}
 
 int Stack :: Pop()    
 {
@@ -42,7 +55,17 @@ int Stack :: Pip()
 }
 
 void Stack :: Display()
-{}
+{
+    struct node *temp = NULL;
+
+    temp = first;
+
+    while(temp != NULL)
+    {
+        cout<<"| "<<temp->data<<" |\n";
+        temp = temp -> next;
+    }
+}
 
 int Stack :: Count()
 {
@@ -52,6 +75,17 @@ int Stack :: Count()
 int main()
 {
     Stack sobj;
+    int iRet = 0;
+
+    sobj.Push(11);
+    sobj.Push(21);
+    sobj.Push(51);
+    sobj.Push(101);
+
+    sobj.Display();
+
+    iRet = sobj.Count();
+    cout<<"Elements of the Stack are : "<<iRet<<"\n";
 
     return 0;
 }
